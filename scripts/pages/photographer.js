@@ -54,6 +54,9 @@ function displayPhotographerInfo(photographer) {
   photographerInfo.appendChild(nameDiv);
   photographerInfo.appendChild(artistResume);
   profilePicture.appendChild(imgPersonalPage); 
+
+  const modalNameDiv =document.getElementById("modalNameDiv")
+  modalNameDiv.innerHTML = `<h2>${photographer.name}</h2>`;
 }
 
 // Récupère les médias depuis le JSON
@@ -222,6 +225,43 @@ function renderGallery(mediaArray) {
   // Extraction et affichage des médias
   displayMedia(artistData, photographerKey, photographerId);
 })();
+
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.querySelector('#contact_modal form');
+  const sendButton = contactForm.querySelector('.contact_button');
+
+  sendButton.addEventListener('click', function(e) {
+    e.preventDefault();
+
+    // Sélection directe grâce aux id
+    const prenomInput = document.getElementById('prenom');
+    const nomInput = document.getElementById('nom');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+
+    console.log("Prénom :", prenomInput.value);
+    console.log("Nom :", nomInput.value);
+    console.log("Email :", emailInput.value);
+    console.log("Message :", messageInput.value);
+
+    // Ferme la modal via votre fonction existante
+    closeModal();
+
+    // Réinitialisation des champs pour la prochaine ouverture
+    prenomInput.value = "";
+    nomInput.value = "";
+    emailInput.value = "";
+    messageInput.value = "";
+
+    // Si nécessaire, pour remettre le curseur au début lors du focus
+    [prenomInput, nomInput, emailInput, messageInput].forEach(input => {
+      input.addEventListener('focus', function() {
+        input.setSelectionRange(0, 0);
+      });
+    });
+  });
+});
+
 
 /* -----------------------
    4. Gestion du dropdown et du tri
