@@ -5,6 +5,94 @@ let photographerMedia = [];
    1. Fonctions de base
 -------------------------*/
 
+// Variables globales
+
+let currentMediaIndex = 0;
+
+/**
+ * Ouvre la modal et affiche le média passé en paramètre.
+ */
+function openModal(mediaInfo) {
+  // Met à jour l'indice du média courant dans le tableau global
+  currentMediaIndex = photographerMedia.findIndex(media => media.id === mediaInfo.id);
+
+  const modal = document.getElementById('modal');
+  const modalContent = document.getElementById('modal-content');
+  const modalClose = document.getElementById('modal-close');
+  
+  // Affiche la modal
+  modal.classList.add('active');
+  
+  // Met à jour le contenu de la modal
+  modalContent.innerHTML = `
+    <div class="fullLightBoxModal">
+     <div class="arrow__links__left">
+        <button onclick="PrevSlide()">
+          <img src="../../assets/VectorLeft.png" alt="Précédent" class="arrowLeft" />
+        </button>
+      </div>
+    <div class="mediaTitle">
+
+      <div class="modal-media">
+        ${mediaInfo.type === 'photo'
+          ? `<img src="${mediaInfo.path}" alt="${mediaInfo.title}" class="lightBoxModal">`
+          : `<video class="lightBoxModal" src="${mediaInfo.path}" controls></video>`
+        }
+      </div>
+
+      <div class="modal-infos">
+        <h2>${mediaInfo.title}</h2>
+        </div>
+
+
+        </div>
+        <div class="crossAndArrowRight">
+
+        <div class="closeModal" id="modalClose">
+        <button onclick="closeModal()">
+          <img src="../../assets/close-24px 1.png" alt="Fermer" class="arrowClose" />
+        </button>
+        </div>
+        <div class="centered__arrow__right">
+        <div class="arrow__links__right">
+        <button onclick="NextSlide()">
+          <img src="../../assets/VectorRight.png" alt="Suivant" class="arrowRight" />
+        </button>
+        </div>
+        </div>
+    
+    </div>
+  `;
+  
+  // Ajoute l'écouteur pour fermer la modal
+  modalClose.addEventListener('click', () => {
+    modal.classList.remove('active');
+  });
+}
+
+/**
+ * Affiche le média précédent dans la modal.
+ */
+function PrevSlide() {
+  if (photographerMedia.length === 0) return;
+  
+  // Navigation circulaire vers le média précédent
+  currentMediaIndex = (currentMediaIndex - 1 + photographerMedia.length) % photographerMedia.length;
+  openModal(photographerMedia[currentMediaIndex]);
+}
+
+/**
+ * Affiche le média suivant dans la modal.
+ */
+function NextSlide() {
+  if (photographerMedia.length === 0) return;
+  
+  // Navigation circulaire vers le média suivant
+  currentMediaIndex = (currentMediaIndex + 1) % photographerMedia.length;
+  openModal(photographerMedia[currentMediaIndex]);
+}
+
+
 // Récupère l'ID du photographe depuis l'URL
 function getPhotographerIdFromURL() {
   const params = new URLSearchParams(window.location.search);
@@ -99,6 +187,8 @@ function displayMedia(artistData, photographerKey, photographerId) {
 
   // On vide le tableau global pour le photographe
   photographerMedia = [];
+  // Variable globale pour stocker l'indice du média actuellement affiché
+let currentMediaIndex = 0;
 
   // --- Traiter les photos ---
   if (currentMedia.photos && Array.isArray(currentMedia.photos)) {
@@ -145,8 +235,14 @@ function renderGallery(mediaArray) {
   gallery.innerHTML = "";
   
   mediaArray.forEach(mediaInfo => {
+    
     const mediaItemDiv = document.createElement("div");
     mediaItemDiv.classList.add("media-item");
+    // Ajout de l'écouteur d'événement sur chaque mediaItemDiv
+mediaItemDiv.addEventListener('click', () => {
+  openModal(mediaInfo);
+});
+
     
     let mediaElement;
     if (mediaInfo.type === "photo") {
@@ -167,6 +263,13 @@ function renderGallery(mediaArray) {
     mediaElement.dataset.likes = mediaInfo.likes;
     mediaElement.dataset.date = mediaInfo.date;
     mediaElement.dataset.price = mediaInfo.price;
+
+
+       // Ajout de l'écouteur d'événement sur chaque mediaItemDiv
+       mediaItemDiv.addEventListener('click', () => {
+        openModal(mediaInfo);
+      });
+    
     
     // Zone de présentation (likes et titre)
     const presentation = document.createElement("div");
@@ -315,4 +418,8 @@ document.addEventListener("DOMContentLoaded", function () {
       dropdown.classList.remove("active");
     });
   });
-});
+
+
+ 
+
+}); 
