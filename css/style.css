@@ -3,548 +3,568 @@
 /* -------------------------- */
 
 body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
-  }
-  
-  /* -------------------------- */
-  /*         Header             */
-  /* -------------------------- */
-  
-  header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
-    width: 100%;
-  }
-  
-  h1 {
-    color: #901C1C;
-    margin-right: 100px;
-  }
-  
-  .logo {
-    height: 50px;
-    margin-left: 100px;
-  }
-  
-  /* -------------------------- */
-  /*        Hero Banner         */
-  /* -------------------------- */
-  
-  .hero-banner {
-    display: flex;
-    background-color: #FAFAFA;
-    justify-content: space-evenly;
-  }
-  
-  /* -------------------------- */
-  /*       Main & Artist        */
-  /* -------------------------- */
-  
-  #main {
-    position: absolute;
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    flex-direction: column;
-  }
-  
-  .artist-page {
-    font-family: "DM Sans", sans-serif;
-    font-weight: 400;
-  }
-  
-  .name-img-click {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-  }
-  
-  .circle {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    overflow: hidden;
-  }
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
+}
 
-  .circle p,h2{
-    margin: 0;
-  }
-  
-  .photographer-img {
-    width: 200px; /* Ajuste la taille au besoin */
-    height: 200px; /* Pour avoir une image carrée */
-    border-radius: 50%; /* Rend l'image circulaire */
-    object-fit: cover;
-    transform: scale(1.2);
-    overflow: hidden;
-  }
-  
-  .photographer-name {
-    margin-bottom: 5px;
+/* -------------------------- */
+/*         Header             */
+/* -------------------------- */
 
-  }
-  
-  .location {
-    color: #901C1C;
-    font-size: 1.3vw;
-    margin-top: 0;
-    margin-bottom: 5px;
-  }
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  width: 100%;
+}
 
-  .artisPage {
-    font-size: 3vw;
-  }
-  
-  /* L'élément artist-tagline fusionne deux définitions */
-  .artist-tagline {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: 400;
-  }
-  
-  .tagline {
-    font-size: 1.0vw;
-    font-weight: 400;
-    font-family: "DM Sans", sans-serif;
-    margin-top: 0;
-    margin-bottom: 5px;
-  }
-  
-  .price {
-    margin: 0;
-    font-size: 0.9vw;
-    font-weight: 400;
-    font-family: "DM Sans", sans-serif;
-  }
-  
-  /* -------------------------- */
-  /*      Photograph Header     */
-  /* -------------------------- */
-  
-  .photograph-header {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
-  }
-  
-  /* -------------------------- */
-  /*     Sorting & Dropdown     */
-  /* -------------------------- */
-  
-  .sort {
-    margin-left: 188px;
-    display: flex;
-    gap: 15px;
-    margin-top: 60px;
-    height: 35px;
-    align-items: center;
-  }
-  
-  #optionSort {
-    margin-left: 10px;
-    background-color: #901C1C;
-  }
-  
-  #sort {
-    background-color: #901C1C;
-    border-radius: 5px;
-    border: none;
-    width: 170px;
-    height: 69px;
-    padding-left: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  #label {
-    display: flex;
-    font-weight: 700;
-    font-size: 18px;
-    align-items: center;
-  }
-  
-  .arrow {
-    margin-right: 5px;
-  }
-  
-  .dropdown-option-date {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 20px;
-    margin-bottom: 5px;
-    font-size: 18px;
-    height: 32px;
-  }
-  
-  .dropdown-option-titre {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: space-between;
-    margin-left: 20px;
-    margin-bottom: 5px;
-    font-size: 18px;
-    height: 32px;
-  }
-  
-  /* -------------------------- */
-  /*    Photographer Section    */
-  /* -------------------------- */
-  
-  .photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
-  }
-  
-  .photographer_section article {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .photographer_section article h2 {
-    color: #D3573C;
-    font-size: 36px;
-    width: 100%;
-    font-size: 3vw;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .photographer_section article img {
-    height: 200px;
-    width: 200px;
-  }
-  
-  /* -------------------------- */
-  /*     Artist Resume & Info   */
-  /* -------------------------- */
-  
-  .artist-resume {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .artist-info {
-    display: flex;
-    flex-direction: column;
-    background-color: #FAFAFA;
-    justify-content: center;
-    position: relative;
-    right: 190px;
-  }
-  
-  .artist-name {
-    display: flex;
-    align-items: center;
-    margin-right: 0;
-    font-size: 64px;
-    font-weight: 400;
-  }
-  
-  .artist-location {
-    color: #901C1C;
-    font-size: 24px;
-    font-weight: 400;
-  }
-  
-  /* -------------------------- */
-  /*      Personal Page Img     */
-  /* -------------------------- */
-  
-  .img-personal-page {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    object-fit: cover;
-    border-radius: 50px;
-    position: relative;
-    left: 130px;
-  }
-  
-  .artist-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 100px;
-  }
-  
-  /* -------------------------- */
-  /*       Presentation         */
-  /* -------------------------- */
-  
-  .presentation {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row-reverse;
-    color: #901C1C;
-  }
-  
-  /* -------------------------- */
-  /*   Modal & Contact Form     */
-  /* -------------------------- */
-  
-  #contact_modal {
-    display: none;
-  }
-  
-  .modal {
-    border-radius: 5px;
-    background-color: #DB8876;
-    /* La largeur est fixée à 670px */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
-    margin: auto;
-    width: 670px;
-    position: relative;
-  }
-  
-  .modalTopHeader {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    margin-bottom: 20px;
-  }
-  .modalTopHeader h2 {
-    margin: 0;
-  }
-  #modalNameDiv {
-    display: flex;
-  }
-  .lightBoxModal{
-    max-width: 1050px;
-    max-height: 900px;
-    width: 100%;
-    height: 100%;
-  }
+h1 {
+  color: #901C1C;
+  margin-right: 100px;
+}
 
-  /* Fusion des règles pour .contactAndClose (attention à la casse) */
-  .contactAndClose {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-  }
-  .modalNameDiv {
-    display: flex;
-    align-items: flex-start;
-  }
-  
-  .modal header {
-    justify-content: space-between;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .modal header img {
-    cursor: pointer;
-  }
-  
-  .modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
-  }
-  
-  /* -------------------------- */
-  /*       Contact Button       */
-  /* -------------------------- */
-  
-  .contact_button {
-    margin-top: 20px;
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
-    border: none;
-    background-color: #901C1C;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .contact_button:hover , .contact_button:focus {
-    background-color: #D3573C;
-  }
-  /* -------------------------- */
-  /*        Form Styling        */
-  /* -------------------------- */
-  
-  form {
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  form label {
-    color: #312E2E;
-    font-size: 36px;
-  }
-  
-  form div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-start;
-    margin-bottom: 26px;
-  }
-  
-  form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
-  }
-  
-  /* -------------------------- */
-  /*   Photograph Gallery &     */
-  /*       Media Items          */
-  /* -------------------------- */
-  
-  .photograph-gallery {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #gallery {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    padding-top: 50px;
-    padding-bottom: 50px;
-    justify-content: center;
-  }
-  
-  .media-item {
-    display: flex;
-    flex-direction: column-reverse;
-    width: 350px;
-    height: 350px;
-    overflow: hidden;
-  }
-  
-  .media-item img,
-  .media-item video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  
-  /* -------------------------- */
-  /*       Dropdown Menu        */
-  /* -------------------------- */
-  
-  .dropdown {
-    position: relative;
-    display: inline-block;
-  }
-  
-  .dropdown-btn {
-    background-color: #8B0000;
-    color: white;
-    width: 170px;
-    height: 69px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    font-size: 18px;
-    font-family: "DM Sans", sans-serif;
-    padding-left: 0;
-  }
-  
-  .dropdown-menu {
-    display: none;
-    position: absolute;
-    background-color: #8B0000;
-    color: white;
-    list-style: none;
-    margin: 0;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 118px;
-  }
-  
-  .dropdown.active .dropdown-btn {
-    display: none;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dropdown.active .dropdown-menu {
-    display: flex;
-    top: 50px;
-    left: 0;
-    width: 170px;
-    height: 170px;
-    flex-direction: column;
-    position: relative;
-    padding-left: 0;
-    justify-content: space-evenly;
-  }
-  
-  .first_option {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding-bottom: 0;
-    cursor: pointer;
-    justify-content: center;
-    font-size: 18px;
-    margin-top: 10px;
-  }
-  
-  .dropdown-menu li:last-child {
-    border-bottom: none;
-  }
-  
-  .brake-line {
-    border: none;
-    border-bottom: 1px solid #ffffff;
-    margin: 0 5px;
-  }
-  
-  .dropdown-menu li:hover {
-    background-color: #a52a2a;
-  }
-  
-  .dropdown-menu li a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  /* Styles de base pour la modal */
+.logo {
+  height: 50px;
+  margin-left: 100px;
+}
+
+/* -------------------------- */
+/*        Hero Banner         */
+/* -------------------------- */
+
+.hero-banner {
+  display: flex;
+  background-color: #FAFAFA;
+  justify-content: space-evenly;
+}
+
+/* -------------------------- */
+/*       Main & Artist        */
+/* -------------------------- */
+
+#main {
+  position: absolute;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.artist-page {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+}
+
+.name-img-click {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.circle p, h2 {
+  margin: 0;
+}
+
+.photographer-img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  transform: scale(1.2);
+  overflow: hidden;
+}
+
+.photographer-name {
+  margin-bottom: 5px;
+}
+
+.location {
+  color: #901C1C;
+  font-size: 1.3vw;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.artisPage {
+  font-size: 3vw;
+}
+
+/* -------------------------- */
+/*      Artist Resume & Info  */
+/* -------------------------- */
+
+.artist-tagline {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.tagline {
+  font-size: 1.0vw;
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+.price {
+  margin: 0;
+  font-size: 0.9vw;
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+}
+
+/* -------------------------- */
+/*     Photograph Header      */
+/* -------------------------- */
+
+.photograph-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  background-color: #FAFAFA;
+  height: 300px;
+  margin: 0 100px;
+}
+
+/* -------------------------- */
+/*     Sorting & Dropdown     */
+/* -------------------------- */
+
+.sort {
+  margin-left: 188px;
+  display: flex;
+  gap: 15px;
+  margin-top: 60px;
+  height: 35px;
+  align-items: center;
+}
+
+#optionSort {
+  margin-left: 10px;
+  background-color: #901C1C;
+}
+
+#sort {
+  background-color: #901C1C;
+  border-radius: 5px;
+  border: none;
+  width: 170px;
+  height: 69px;
+  padding-left: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#label {
+  display: flex;
+  font-weight: 700;
+  font-size: 18px;
+  align-items: center;
+}
+
+.arrow {
+  margin-right: 5px;
+}
+
+.dropdown-option-date {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  height: 32px;
+}
+
+.dropdown-option-titre {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 20px;
+  margin-bottom: 5px;
+  font-size: 18px;
+  height: 32px;
+}
+
+/* -------------------------- */
+/*    Photographer Section    */
+/* -------------------------- */
+
+.photographer_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+}
+
+.photographer_section article {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.photographer_section article h2 {
+  color: #D3573C;
+  font-size: 36px;
+  width: 100%;
+  font-size: 3vw;
+  display: flex;
+  justify-content: center;
+}
+
+.photographer_section article img {
+  height: 200px;
+  width: 200px;
+}
+
+/* -------------------------- */
+/*  Artist Resume & Info      */
+/* -------------------------- */
+
+.artist-resume {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.artist-info {
+  display: flex;
+  flex-direction: column;
+  background-color: #FAFAFA;
+  justify-content: center;
+  position: relative;
+  right: 190px;
+}
+
+.artist-name {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+  font-size: 64px;
+  font-weight: 400;
+}
+
+.artist-location {
+  color: #901C1C;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+/* -------------------------- */
+/*    Personal Page Img       */
+/* -------------------------- */
+
+.img-personal-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  object-fit: cover;
+  border-radius: 50px;
+  position: relative;
+  left: 130px;
+}
+
+.artist-img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100px;
+}
+
+/* -------------------------- */
+/*       Presentation         */
+/* -------------------------- */
+
+.presentation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  color: #901C1C;
+}
+
+/* -------------------------- */
+/*   Modal & Contact Form     */
+/* -------------------------- */
+
+#contact_modal {
+  display: none;
+}
+
+#contact_modal.active {
+  display: block;
+}
+
 .modal {
-  display: none; /* caché par défaut */
+  border-radius: 5px;
+  background-color: #DB8876;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 35px;
+  margin: auto;
+  width: 670px;
+  position: relative;
+}
+
+.modalTopHeader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.modalTopHeader h2 {
+  margin: 0;
+}
+
+#modalNameDiv {
+  display: flex;
+}
+
+.lightBoxModal {
+  max-width: 1050px;
+  max-height: 900px;
+  width: 100%;
+  height: 100%;
+}
+
+/* -------------------------- */
+/*   Contact & Close Section  */
+/* -------------------------- */
+
+.contactAndClose {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.modalNameDiv {
+  display: flex;
+  align-items: flex-start;
+}
+
+.modal header {
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+}
+
+.modal header img {
+  cursor: pointer;
+}
+
+.modal header h2 {
+  font-size: 64px;
+  font-weight: normal;
+  text-align: center;
+}
+
+/* -------------------------- */
+/*      Contact Button        */
+/* -------------------------- */
+
+.contact_button {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white;
+  padding: 11px;
+  width: 170px;
+  height: 70px;
+  border: none;
+  background-color: #901C1C;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact_button:hover,
+.contact_button:focus {
+  background-color: #D3573C;
+}
+
+/* -------------------------- */
+/*        Form Styling        */
+/* -------------------------- */
+
+form {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+form label {
+  color: #312E2E;
+  font-size: 36px;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: flex-start;
+  margin-bottom: 26px;
+}
+
+form input {
+  width: 100%;
+  height: 68px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* -------------------------- */
+/*  Photograph Gallery & Media */
+/* -------------------------- */
+
+.photograph-gallery {
+  display: flex;
+  flex-direction: column;
+}
+
+#gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  justify-content: center;
+}
+
+.media-item {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+}
+
+.media-item img,
+.media-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* -------------------------- */
+/*       Dropdown Menu        */
+/* -------------------------- */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-btn {
+  background-color: #8B0000;
+  color: white;
+  width: 170px;
+  height: 69px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+  font-family: "DM Sans", sans-serif;
+  padding-left: 0;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #8B0000;
+  color: white;
+  list-style: none;
+  margin: 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 118px;
+}
+
+.dropdown.active .dropdown-btn {
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown.active .dropdown-menu {
+  display: flex;
+  top: 50px;
+  left: 0;
+  width: 170px;
+  height: 170px;
+  flex-direction: column;
+  position: relative;
+  padding-left: 0;
+  justify-content: space-evenly;
+}
+
+.first_option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 0;
+  cursor: pointer;
+  justify-content: center;
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.dropdown-menu li:last-child {
+  border-bottom: none;
+}
+
+.brake-line {
+  border: none;
+  border-bottom: 1px solid #ffffff;
+  margin: 0 5px;
+}
+
+.dropdown-menu li:hover {
+  background-color: #a52a2a;
+}
+
+.dropdown-menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* -------------------------- */
+/*       Modal Lightbox       */
+/* -------------------------- */
+
+.fullLightBoxModal {
+  display: flex;
+}
+
+.modalLightBox {
+  display: none;
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -552,23 +572,20 @@ body {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.8); /* fond semi-transparent */
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Affichage de la modal lorsqu'elle est active */
-.modal.active {
+.modalLightBox.active {
   display: block;
 }
 
-/* Contenu centré dans la modal */
-.modal-content {
+.modalLightBox-content {
   margin: 5% auto;
   max-width: 800px;
   position: relative;
 }
 
-/* Bouton de fermeture */
-.modal-close {
+.modalLightBox-close {
   position: absolute;
   top: 15px;
   right: 25px;
@@ -577,7 +594,8 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
-.modal-media {
+
+.modalLightBox-media {
   display: flex;
   position: relative;
   width: 100%;
@@ -585,87 +603,118 @@ body {
   max-width: 1050px;
   max-height: 900px;
 }
+
 .MediaArrow {
   display: flex;
- 
-
-
 }
+
 .mediaTitle {
   display: flex;
   flex-direction: column;
 }
-.arrow__links{
+
+.arrow__links {
   display: flex;
-  position: absolute; 
+  position: absolute;
   justify-content: space-between;
   width: 100%;
   height: 100%;
- 
 }
-.arrow__links__left{
- display: flex;
- align-items: center;
- background-color: white;
+
+.arrow__links__left {
+  display: flex;
+  align-items: center;
+  background-color: white;
 }
+
 .arrow__links__left button {
   background-color: transparent;
   border: none;
 }
 
-.arrow__links__right{
- display: flex;
- align-items: center;
- background-color: white;}
+.arrow__links__right {
+  display: flex;
+  align-items: center;
+  background-color: white;
+}
 
- .arrow__links__right button {
+.arrow__links__right button {
   background-color: white;
   border: none;
-
- }
+}
 
 .arrow__links button {
-background-color: white;
-border: none;
-height: 100%;
+  background-color: white;
+  border: none;
+  height: 100%;
 }
-.fullLightBoxModal {
+
+.fullLightBoxModalLightBox {
   display: flex;
   justify-content: center;
-  
   width: 100%;
   height: 100%;
 }
-.closeModal{
+
+.closeModalLightBox {
   display: flex;
   flex-direction: column;
   background-color: transparent;
-  max-height:72px;
+  max-height: 72px;
   width: 100%;
   height: 100%;
 }
-.closeModal button {
+
+.closeModalLightBox button {
   background-color: transparent;
   border: none;
   max-width: 72px;
-  max-height:72px;
+  max-height: 72px;
   color: #901C1C;
   padding: 0;
   position: relative;
 }
 
-.crossAndArrowRight{
+.crossAndArrowRight {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: white;
 }
-.centered__arrow__right{
+
+.centered__arrow__right {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 100%;
   position: absolute;
+}
+.bottom-counter {
+  display: flex;;
+  position: fixed;
+  bottom: -50px;
+  right: 20px;
+  background-color: #DB8876;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 999; /* passer au-dessus de la galerie */
+  font-size: 16px;
+  width: 376px;
+  height: 89px;
+}
+.bottom-counter-info {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
 
+
+}
+#like-counter{
+  font-size: 24px;
+}
+
+#price-counter{
+  font-size: 24px;
 }

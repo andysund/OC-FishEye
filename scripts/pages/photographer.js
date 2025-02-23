@@ -1,105 +1,98 @@
+/* scripts/pages/photographer.js */
+
 // Variable globale qui contiendra les médias du photographe
 let photographerMedia = [];
+let currentMediaIndex = 0;
+let currentPhotographer = null;
 
 /* -----------------------
-   1. Fonctions de base
+   Modal Lightbox Functions
 -------------------------*/
 
-// Variables globales
-
-let currentMediaIndex = 0;
-
-/**
- * Ouvre la modal et affiche le média passé en paramètre.
- */
-function openModal(mediaInfo) {
-  // Met à jour l'indice du média courant dans le tableau global
+// Ouvre la modal lightbox et affiche le média passé en paramètre
+function openLightBoxModal(mediaInfo) {
   currentMediaIndex = photographerMedia.findIndex(media => media.id === mediaInfo.id);
-
-  const modal = document.getElementById('modal');
+  const lightBoxModal = document.getElementById('modalLightBox');
   const modalContent = document.getElementById('modal-content');
-  const modalClose = document.getElementById('modal-close');
-  
-  // Affiche la modal
-  modal.classList.add('active');
-  
-  // Met à jour le contenu de la modal
+
+  // Affiche la modal lightbox
+  lightBoxModal.classList.add('active');
+
+  // Mise à jour dynamique du contenu de la modal
   modalContent.innerHTML = `
     <div class="fullLightBoxModal">
-     <div class="arrow__links__left">
+      <div class="arrow__links__left">
         <button onclick="PrevSlide()">
           <img src="../../assets/VectorLeft.png" alt="Précédent" class="arrowLeft" />
         </button>
       </div>
-    <div class="mediaTitle">
-
-      <div class="modal-media">
-        ${mediaInfo.type === 'photo'
-          ? `<img src="${mediaInfo.path}" alt="${mediaInfo.title}" class="lightBoxModal">`
-          : `<video class="lightBoxModal" src="${mediaInfo.path}" controls></video>`
-        }
+      <div class="mediaTitle">
+        <div class="modal-media">
+          ${
+            mediaInfo.type === 'photo'
+              ? `<img src="${mediaInfo.path}" alt="${mediaInfo.title}" class="lightBoxModal">`
+              : `<video class="lightBoxModal" src="${mediaInfo.path}" controls></video>`
+          }
+        </div>
+        <div class="modal-infos">
+          <h2>${mediaInfo.title}</h2>
+        </div>
       </div>
-
-      <div class="modal-infos">
-        <h2>${mediaInfo.title}</h2>
-        </div>
-
-
-        </div>
-        <div class="crossAndArrowRight">
-
-        <div class="closeModal" id="modalClose">
-        <button onclick="closeModal()">
-          <img src="../../assets/close-24px 1.png" alt="Fermer" class="arrowClose" />
-        </button>
+      <div class="crossAndArrowRight">
+        <div class="closeModalLightBox">
+          <button id="mediaModalCloseButton">
+            <img src="../../assets/close-24px 1.png" alt="Fermer" class="arrowClose" />
+          </button>
         </div>
         <div class="centered__arrow__right">
-        <div class="arrow__links__right">
-        <button onclick="NextSlide()">
-          <img src="../../assets/VectorRight.png" alt="Suivant" class="arrowRight" />
-        </button>
+          <div class="arrow__links__right">
+            <button onclick="NextSlide()">
+              <img src="../../assets/VectorRight.png" alt="Suivant" class="arrowRight" />
+            </button>
+          </div>
         </div>
-        </div>
-    
+      </div>
     </div>
   `;
-  
-  // Ajoute l'écouteur pour fermer la modal
-  modalClose.addEventListener('click', () => {
-    modal.classList.remove('active');
-  });
+
+  // Attache l'écouteur pour fermer la modal lightbox
+  const closeModalButton = document.getElementById('mediaModalCloseButton');
+  if (closeModalButton) {
+    closeModalButton.addEventListener('click', closeLightBoxModal);
+  }
 }
 
-/**
- * Affiche le média précédent dans la modal.
- */
+// Ferme la modal lightbox
+function closeLightBoxModal() {
+  const lightBoxModal = document.getElementById('modalLightBox');
+  lightBoxModal.classList.remove('active');
+}
+
+/* -----------------------
+   Navigation des Slides
+-------------------------*/
+
 function PrevSlide() {
   if (photographerMedia.length === 0) return;
-  
-  // Navigation circulaire vers le média précédent
   currentMediaIndex = (currentMediaIndex - 1 + photographerMedia.length) % photographerMedia.length;
-  openModal(photographerMedia[currentMediaIndex]);
+  openLightBoxModal(photographerMedia[currentMediaIndex]);
 }
 
-/**
- * Affiche le média suivant dans la modal.
- */
 function NextSlide() {
   if (photographerMedia.length === 0) return;
-  
-  // Navigation circulaire vers le média suivant
   currentMediaIndex = (currentMediaIndex + 1) % photographerMedia.length;
-  openModal(photographerMedia[currentMediaIndex]);
+  openLightBoxModal(photographerMedia[currentMediaIndex]);
 }
 
+/* -----------------------
+   Fonctions Photographe & Médias
+-------------------------*/
 
-// Récupère l'ID du photographe depuis l'URL
 function getPhotographerIdFromURL() {
   const params = new URLSearchParams(window.location.search);
   return params.get("id");
 }
 
-// Récupère la liste des photographes depuis le JSON
 async function getPhotographers() {
   try {
     const response = await fetch('assets/photographers/photographers.json');
@@ -111,7 +104,6 @@ async function getPhotographers() {
   }
 }
 
-// Affiche les informations du photographe
 function displayPhotographerInfo(photographer) {
   const photographerInfo = document.querySelector(".artist-info");
   const profilePicture = document.querySelector(".img-personal-page");
@@ -143,11 +135,10 @@ function displayPhotographerInfo(photographer) {
   photographerInfo.appendChild(artistResume);
   profilePicture.appendChild(imgPersonalPage); 
 
-  const modalNameDiv =document.getElementById("modalNameDiv")
+  const modalNameDiv = document.getElementById("modalNameDiv");
   modalNameDiv.innerHTML = `<h2>${photographer.name}</h2>`;
 }
 
-// Récupère les médias depuis le JSON
 async function getArtistWork() {
   try {
     const response = await fetch('./assets/FishEye_Photos (1)/Sample Photos/media.json');
@@ -160,22 +151,10 @@ async function getArtistWork() {
   }
 }
 
-/* -----------------------
-   2. Affichage et tri des médias
--------------------------*/
-
-/**
- * Cette fonction extrait les médias (photos et vidéos) pour le photographe courant,
- * complète chaque objet avec quelques propriétés (type et chemin complet),
- * et stocke le tout dans le tableau global `photographerMedia`.
- * Ensuite, elle appelle renderGallery pour afficher les médias.
- */
 function displayMedia(artistData, photographerKey, photographerId) {
-  // Réinitialisation de la galerie
   const gallery = document.getElementById('gallery');
   gallery.innerHTML = "";
 
-  // On récupère les médias spécifiques à ce photographe
   const currentMedia = artistData[photographerKey];
   if (!currentMedia) {
     console.error("Aucun média trouvé pour " + photographerKey);
@@ -183,21 +162,15 @@ function displayMedia(artistData, photographerKey, photographerId) {
   }
   
   const baseMediaPath = 'assets/FishEye_Photos (1)/Sample Photos/';
-  const globalMedia = artistData.media; // tableau contenant TOUS les médias
-
-  // On vide le tableau global pour le photographe
+  const globalMedia = artistData.media;
   photographerMedia = [];
-  // Variable globale pour stocker l'indice du média actuellement affiché
-let currentMediaIndex = 0;
 
-  // --- Traiter les photos ---
+  // Traitement des photos
   if (currentMedia.photos && Array.isArray(currentMedia.photos)) {
     currentMedia.photos.forEach(photoPath => {
       const fileName = photoPath.split(/[\\/]/).pop();
-      // Recherche l'objet média correspondant dans le tableau global
       const mediaInfo = globalMedia.find(item => item.image === fileName);
       if (mediaInfo) {
-        // On ajoute des propriétés utiles pour le rendu
         mediaInfo.type = "photo";
         mediaInfo.path = baseMediaPath + photoPath.replace(/\\/g, '/');
         photographerMedia.push(mediaInfo);
@@ -205,7 +178,7 @@ let currentMediaIndex = 0;
     });
   }
   
-  // --- Traiter les vidéos ---
+  // Traitement des vidéos
   if (currentMedia.videos && Array.isArray(currentMedia.videos)) {
     currentMedia.videos.forEach(videoPath => {
       const fileName = videoPath.split(/[\\/]/).pop();
@@ -218,31 +191,43 @@ let currentMediaIndex = 0;
     });
   }
   
-  // Tri par défaut (ici par popularité décroissante)
+  // Tri par défaut par popularité
   photographerMedia.sort((a, b) => b.likes - a.likes);
-  
-  // Affichage de la galerie avec les médias triés
   renderGallery(photographerMedia);
+    // Tri et affichage de la galerie
+    photographerMedia.sort((a, b) => b.likes - a.likes);
+    renderGallery(photographerMedia);
+    
+    // Mise à jour du compteur en bas à droite
+    updateBottomCounter(currentPhotographer, photographerMedia);
+  
 }
 
-/**
- * Cette fonction reçoit un tableau de médias et affiche chacun dans la galerie.
- * Pour chaque média, on crée une div contenant la zone de présentation (likes et titre)
- * et l’élément média (img ou video).
- */
+function updateBottomCounter(photographer, mediaArray) {
+  // Calcul du total des likes
+  const totalLikes = mediaArray.reduce((acc, media) => acc + media.likes, 0);
+  const HeartIcon = '<img src="../../assets/favorite-24px 1.png" alt="Coeur" class="heart-icon">';
+
+  // Affichage du total avec l'icône
+  document.getElementById('like-counter').innerHTML = totalLikes + ' ' + HeartIcon;
+ 
+  // Affichage du prix/jour du photographe
+  document.getElementById('price-counter').textContent = photographer.price + ' €/jour';
+}
+
+
 function renderGallery(mediaArray) {
   const gallery = document.getElementById('gallery');
   gallery.innerHTML = "";
   
   mediaArray.forEach(mediaInfo => {
-    
     const mediaItemDiv = document.createElement("div");
     mediaItemDiv.classList.add("media-item");
-    // Ajout de l'écouteur d'événement sur chaque mediaItemDiv
-mediaItemDiv.addEventListener('click', () => {
-  openModal(mediaInfo);
-});
-
+    
+    // Ajoute l'événement pour ouvrir la lightbox
+    mediaItemDiv.addEventListener('click', () => {
+      openLightBoxModal(mediaInfo);
+    });
     
     let mediaElement;
     if (mediaInfo.type === "photo") {
@@ -256,20 +241,12 @@ mediaItemDiv.addEventListener('click', () => {
       mediaElement.alt = mediaInfo.title + " video";
     }
     
-    // Ajout des informations au média (data-attributes, titre, etc.)
     mediaElement.title = mediaInfo.title;
     mediaElement.dataset.mediaId = mediaInfo.id;
     mediaElement.dataset.photographerId = mediaInfo.photographerId;
     mediaElement.dataset.likes = mediaInfo.likes;
     mediaElement.dataset.date = mediaInfo.date;
     mediaElement.dataset.price = mediaInfo.price;
-
-
-       // Ajout de l'écouteur d'événement sur chaque mediaItemDiv
-       mediaItemDiv.addEventListener('click', () => {
-        openModal(mediaInfo);
-      });
-    
     
     // Zone de présentation (likes et titre)
     const presentation = document.createElement("div");
@@ -278,10 +255,11 @@ mediaItemDiv.addEventListener('click', () => {
     const likesElement = document.createElement("p");
     likesElement.classList.add("likes");
     likesElement.textContent = mediaInfo.likes + " ❤";
-    // Incrémentation des likes au clic
-    likesElement.addEventListener("click", () => {
+    likesElement.addEventListener("click", (e) => {
+      e.stopPropagation();
       mediaInfo.likes++;
       likesElement.textContent = mediaInfo.likes + " ❤";
+      updateBottomCounter(currentPhotographer, photographerMedia);
     });
     
     const titleElement = document.createElement("p");
@@ -296,130 +274,67 @@ mediaItemDiv.addEventListener('click', () => {
   });
 }
 
-/* -----------------------
-   3. Initialisation
--------------------------*/
-
 (async function init() {
-  // Récupération de l'ID dans l'URL
   const photographerId = getPhotographerIdFromURL();
   if (!photographerId) {
     console.error("Aucun ID trouvé dans l'URL.");
     return;
   }
   
-  // Récupération et identification du photographe courant
   const photographers = await getPhotographers();
   const photographer = photographers.find(p => p.id == photographerId);
   if (!photographer) {
     console.error("Photographe non trouvé !");
     return;
   }
+  currentPhotographer = photographer;
   
-  // Affichage des informations du photographe
   displayPhotographerInfo(photographer);
   
-  // Récupération des médias
   const artistData = await getArtistWork();
-  
-  // Pour accéder aux médias dans le JSON, on utilise ici le prénom (par exemple "Mimi")
   const photographerKey = photographer.name.split(" ")[0];
-  
-  // Extraction et affichage des médias
   displayMedia(artistData, photographerKey, photographerId);
 })();
-
-document.addEventListener('DOMContentLoaded', function() {
-  const contactForm = document.querySelector('#contact_modal form');
-  const sendButton = contactForm.querySelector('.contact_button');
-
-  sendButton.addEventListener('click', function(e) {
-    e.preventDefault();
-
-    // Sélection directe grâce aux id
-    const prenomInput = document.getElementById('prenom');
-    const nomInput = document.getElementById('nom');
-    const emailInput = document.getElementById('email');
-    const messageInput = document.getElementById('message');
-
-    console.log("Prénom :", prenomInput.value);
-    console.log("Nom :", nomInput.value);
-    console.log("Email :", emailInput.value);
-    console.log("Message :", messageInput.value);
-
-    // Ferme la modal via votre fonction existante
-    closeModal();
-
-    // Réinitialisation des champs pour la prochaine ouverture
-    prenomInput.value = "";
-    nomInput.value = "";
-    emailInput.value = "";
-    messageInput.value = "";
-
-    // Si nécessaire, pour remettre le curseur au début lors du focus
-    [prenomInput, nomInput, emailInput, messageInput].forEach(input => {
-      input.addEventListener('focus', function() {
-        input.setSelectionRange(0, 0);
-      });
-    });
-  });
-});
-
-
-/* -----------------------
-   4. Gestion du dropdown et du tri
--------------------------*/
 
 document.addEventListener("DOMContentLoaded", function () {
   const dropdown = document.querySelector(".dropdown");
   const button = document.querySelector(".dropdown-btn");
 
-  // Au clic sur le bouton, on affiche/masque le menu
   button.addEventListener("click", (event) => {
     event.stopPropagation();
     dropdown.classList.toggle("active");
   });
 
-  // Clic en dehors du dropdown pour le fermer
   document.addEventListener("click", (event) => {
     if (!dropdown.contains(event.target)) {
       dropdown.classList.remove("active");
     }
   });
 
-  // Ajout des écouteurs sur chaque option du menu
   const dropdownLinks = document.querySelectorAll(".dropdown-menu li");
   dropdownLinks.forEach(link => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const sortValue = link.dataset.value;
-      console.log("Tri par :", sortValue);
-      console.log("contenu link :", link.dataset.textContent);
       let sortedMedia = [];
       
       if (sortValue === "popularity") {
-        // Tri par nombre de likes décroissant
         sortedMedia = photographerMedia.slice().sort((a, b) => b.likes - a.likes);
       } else if (sortValue === "date") {
-        // Tri par date croissante (vous pouvez inverser le sens si besoin)
         sortedMedia = photographerMedia.slice().sort((a, b) => new Date(a.date) - new Date(b.date));
       } else if (sortValue === "title") {
-        // Tri alphabétique sur le titre
         sortedMedia = photographerMedia.slice().sort((a, b) => a.title.localeCompare(b.title));
       }
       
-      // Réaffichage de la galerie avec les médias triés
       renderGallery(sortedMedia);
-      
-      // Mise à jour du libellé du bouton du dropdown (optionnel)
       button.innerHTML = link.textContent + ' <img src="/assets/expand_less.png" alt="Icone flèche vers le bas" class="arrow_down">';
-      
-      // Fermeture du menu
       dropdown.classList.remove("active");
     });
   });
+});
 
-
- 
-
-}); 
+// Exposer les fonctions pour qu'elles soient accessibles par les attributs onclick
+window.openLightBoxModal = openLightBoxModal;
+window.closeLightBoxModal = closeLightBoxModal;
+window.PrevSlide = PrevSlide;
+window.NextSlide = NextSlide;

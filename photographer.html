@@ -1,107 +1,93 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
+    <title>Fisheye - photographe</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link rel="icon" type="image/png" href="assets/favicon.png">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <img src="assets/images/logo.png" class="logo" alt="Logo" />
     </header>
     <main id="main">
-     <div class="photographers-list"></div> 
-    <div class="hero-banner">
-
-      <div class="artist-info"></div>
-    
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
-      <div class="img-personal-page"></div>
-
-
+      <div class="photographers-list"></div> 
+      <div class="hero-banner">
+        <div class="artist-info"></div>
+        <div class="photograph-header">
+          <!-- Bouton de contact qui appelle displayModal() -->
+          <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+        </div>
+        <div class="img-personal-page"></div>
       </div>
       <div class="photograph-gallery">
         <div class="gallery-header">
           <div class="sort">
             <label id="label" for="dropdown">Trier par</label>
-           <div class="dropdown">
-
-  <button class="dropdown-btn">Popularité <img src="/assets/expand_less.png" alt="Icone flèche vers le bas" class="arrow_down"></li></button>
-
-  <ul class="dropdown-menu">
-
-    <li class="first_option" data-value="popularity">
-    <a href="#" >Popularité</a>
-    <img src="/assets/expand_more.png" alt="Icone flèche vers le haut" class="arrow">
-    </li>
-
-    <hr class="brake-line">
-
-    <li class="dropdown-option-date"  data-value="date" id="middle-option"><a href="#">Date</a></li>
-    
-    <hr class="brake-line">
-    <li class="dropdown-option-titre" data-value="title"><a href="#" >Titre</a></li>
- 
-  </ul>
-
-</div>
+            <div class="dropdown">
+              <button class="dropdown-btn">
+                Popularité <img src="/assets/expand_less.png" alt="Icone flèche vers le bas" class="arrow_down">
+              </button>
+              <ul class="dropdown-menu">
+                <li class="first_option" data-value="popularity">
+                  <a href="#">Popularité</a>
+                  <img src="/assets/expand_more.png" alt="Icone flèche vers le haut" class="arrow">
+                </li>
+                <hr class="brake-line">
+                <li class="dropdown-option-date" data-value="date" id="middle-option">
+                  <a href="#">Date</a>
+                </li>
+                <hr class="brake-line">
+                <li class="dropdown-option-titre" data-value="title">
+                  <a href="#">Titre</a>
+                </li>
+              </ul>
+            </div>
           </div>
-           <div id="gallery"></div>
+          <div id="gallery"></div>
         </div>
-       
+      </div>
+        <div class="bottom-counter">
+        <div class="bottom-counter-info">
+    <span id="like-counter">0</span> 
+    <span id="price-counter"></span>
+      </div>
     </main>
 
-
-
+    <!-- Contact Modal -->
     <div id="contact_modal">
-			<div class="modal">
-				<header>
-        <div class="modalTopHeader">
-        <div class="contactAndClose">
-          <h2>Contactez-moi</h2>
-          
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
-        </div>
-         <div id="modalNameDiv"></div>
-         </div>
+      <div class="modal">
+        <header>
+          <div class="modalTopHeader">
+            <div class="contactAndClose">
+              <h2>Contactez-moi</h2>
+              <img src="assets/icons/close.svg" alt="Fermer" onclick="closeContactModal()" />
+            </div>
+            <div id="modalNameDiv"></div>
+          </div>
         </header>
-				<form>
-					<div>
-						<label for="prenom">Prénom</label>
-						<input id="prenom" type="text"/>
-
+        <form>
+          <div>
+            <label for="prenom">Prénom</label>
+            <input id="prenom" type="text"/>
             <label for="nom">Nom</label>
-						<input id="nom" />
-
+            <input id="nom" type="text" />
             <label for="email">Email</label>
             <input id="email" type="email" />
-
             <label for="message">Votre message</label>
             <input id="message" type="text" style="height:178px" />
-
-            <button class="contact_button">Envoyer</button>
-
-          
-					</div>
-					</div>
-					</div>
-       
-					</div>
-        
-				</form>
-			</div>
-		</div>
+            <button class="contact_button" type="submit">Envoyer</button>
+          </div>
+        </form>
+      </div>
+    </div>
 
     <!-- Modal Lightbox -->
-<div id="modal" class="modal">
-  <span id="modal-close" class="modal-close">&times;</span>
-  <div id="modal-content" class="modal-content"></div>
-</div>
-
+    <div id="modalLightBox" class="modalLightBox">
+      <span id="modal-close" class="modalLightBox-close" onclick="closeLightBoxModal()">&times;</span>
+      <div id="modal-content" class="modalLightBox-content"></div>
+    </div>
 
     <script src="scripts/pages/photographer.js"></script>
     <script src="scripts/utils/contactForm.js"></script>
