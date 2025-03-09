@@ -39,8 +39,8 @@ function openLightBoxModal(mediaInfo) {
         </div>
       </div>
       <div class="crossAndArrowRight">
-        <div class="closeModalLightBox">
-          <button id="mediaModalCloseButton">
+        <div class="closeModalLightBox" onclick="closeLightBoxModal()">
+          <button id="mediaModalCloseButton" onclick="closeLightBoxModal()">
             <img src="../../assets/close-24px 1.png" alt="Fermer" class="arrowClose" />
           </button>
         </div>
@@ -65,6 +65,7 @@ function openLightBoxModal(mediaInfo) {
 // Ferme la modal lightbox
 function closeLightBoxModal() {
   const lightBoxModal = document.getElementById('modalLightBox');
+  console.log('Fermeture de la modal lightbox');
   lightBoxModal.classList.remove('active');
 }
 

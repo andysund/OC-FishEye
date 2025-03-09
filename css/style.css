@@ -350,6 +350,10 @@ h1 {
   height: 100%;
 }
 
+.modal-media {
+  max-width: 1050px;
+  max-height: 900px;
+}
 /* -------------------------- */
 /*   Contact & Close Section  */
 /* -------------------------- */
