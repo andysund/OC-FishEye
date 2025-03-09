@@ -207,7 +207,7 @@ function displayMedia(artistData, photographerKey, photographerId) {
 function updateBottomCounter(photographer, mediaArray) {
   // Calcul du total des likes
   const totalLikes = mediaArray.reduce((acc, media) => acc + media.likes, 0);
-  const HeartIcon = '<img src="../../assets/favorite-24px 1.png" alt="Coeur" class="heart-icon">';
+  const HeartIcon = '<div class="heart-number-icone"><img src="../../assets/favorite-24px 1.png" alt="Coeur" class="heart-icon"></div>';
 
   // Affichage du total avec l'icône
   document.getElementById('like-counter').innerHTML = totalLikes + ' ' + HeartIcon;

@@ -715,10 +715,18 @@ form input {
 
 
 }
+
 #like-counter{
   font-size: 24px;
+  display: flex;
 }
-
+.heart-number-icone {
+  display: flex;
+  width: 24px;
+  height: 24px;
+  margin-top: 4px;
+  margin-left: 4px;
+}
 #price-counter{
   font-size: 24px;
 }
