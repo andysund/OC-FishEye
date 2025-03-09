@@ -19,6 +19,10 @@ header {
   height: 90px;
   width: 100%;
 }
+.back-home {
+  width: 200px;
+  height: 50px;
+}
 
 h1 {
   color: #901C1C;
@@ -48,7 +52,6 @@ h1 {
   position: absolute;
   display: flex;
   width: 100%;
-  justify-content: center;
   flex-direction: column;
 }
 
@@ -519,7 +522,7 @@ form input {
 
 .dropdown.active .dropdown-menu {
   display: flex;
-  top: 50px;
+  top: 51px;
   left: 0;
   width: 170px;
   height: 170px;
@@ -724,7 +727,7 @@ form input {
   display: flex;
   width: 24px;
   height: 24px;
-  margin-top: 4px;
+  margin-top: 3px;
   margin-left: 4px;
 }
 #price-counter{
